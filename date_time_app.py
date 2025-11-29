@@ -1,37 +1,38 @@
-import datetime
+from datetime import datetime, timedelta
 
-def get_current_datetime():
-    now = datetime.datetime.now()
-    print("Current Date and Time:")
-    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+def show_date():
+    today = datetime.now().strftime("%d-%m-%Y")
+    print("Today's Date:", today)
 
-def get_custom_datetime():
-    year = int(input("Enter year (YYYY): "))
-    month = int(input("Enter month (1-12): "))
-    day = int(input("Enter day (1-31): "))
-    hour = int(input("Enter hour (0-23): "))
-    minute = int(input("Enter minute (0-59): "))
-    second = int(input("Enter second (0-59): "))
-    custom_date = datetime.datetime(year, month, day, hour, minute, second)
-    print("Custom Date and Time:")
-    print(custom_date.strftime("%Y-%m-%d %H:%M:%S"))
+def show_time():
+    now = datetime.now().strftime("%H:%M:%S")
+    print("Current Time:", now)
+
+def add_days():
+    days = int(input("Enter number of days to add: "))
+    future = datetime.now() + timedelta(days=days)
+    print("Date After", days, "Days :", future.strftime("%d-%m-%Y"))
 
 def main():
     while True:
-        print("\nDate and Time Application")
-        print("1. Get Current Date and Time")
-        print("2. Enter a Custom Date and Time")
-        print("3. Exit")
-        choice = input("Select an option (1/2/3): ")
+        print("\n--- Date & Time Application ---")
+        print("1. Show Today's Date")
+        print("2. Show Current Time")
+        print("3. Add Days to Today's Date")
+        print("4. Exit")
+
+        choice = input("Enter your choice: ")
+
         if choice == '1':
-            get_current_datetime()
+            show_date()
         elif choice == '2':
-            get_custom_datetime()
+            show_time()
         elif choice == '3':
-            print("Exiting application.")
+            add_days()
+        elif choice == '4':
+            print("Exiting... Bye!")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice! Try again.")
 
-if __name__ == "__main__":
-    main()
+main()
